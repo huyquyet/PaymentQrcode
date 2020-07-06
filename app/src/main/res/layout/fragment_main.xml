@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.payment_qrcode.screen.main.MainViewModel" />
+            type="com.example.payment_qrcode.ui.screen.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

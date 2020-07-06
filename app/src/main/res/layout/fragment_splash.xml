@@ -8,20 +8,21 @@
 
         <variable
             name="viewModel"
-            type="com.example.payment_qrcode.screen.splash.SplashViewModel" />
+            type="com.example.payment_qrcode.ui.screen.splash.SplashViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Splash"
-            android:textSize="20sp"
-            android:gravity="center"
+            android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

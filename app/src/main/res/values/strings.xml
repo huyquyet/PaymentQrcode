@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Payment Qrcode</string>
+    <string name="fragment_login_sign_in">Sign In</string>
+    <string name="fragment_login_user_your">Use your</string>
+    <string name="fragment_login_account">account</string>
+    <string name="fragment_login_email">Email</string>
+    <string name="fragment_login_password">Password</string>
+    <string name="fragment_login_i_forgot_password">I forgot password</string>
+    <string name="fragment_login_login">Log in</string>
+    <string name="fragment_login_sign_up">Sign up</string>
 </resources>

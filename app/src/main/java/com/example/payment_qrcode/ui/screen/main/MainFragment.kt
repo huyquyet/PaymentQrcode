@@ -1,4 +1,4 @@
-package com.example.payment_qrcode.screen.main
+package com.example.payment_qrcode.ui.screen.main
 
 import androidx.fragment.app.viewModels
 import com.example.payment_qrcode.R

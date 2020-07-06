@@ -30,7 +30,7 @@ private fun commitTransaction(
 ) {
     if (addToBackStack) transaction.addToBackStack(name)
     if (transit != -1) transaction.setTransition(transit)
-    transaction.commitAllowingStateLoss()
+    transaction.commit()
 }
 
 fun Fragment.replaceFragment(

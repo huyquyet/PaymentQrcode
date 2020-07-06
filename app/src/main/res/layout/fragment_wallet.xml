@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.payment_qrcode.screen.wallet.WalletViewModel" />
+            type="com.example.payment_qrcode.ui.screen.wallet.WalletViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

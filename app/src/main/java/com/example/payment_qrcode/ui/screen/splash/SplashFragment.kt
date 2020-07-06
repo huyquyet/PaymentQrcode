@@ -1,12 +1,13 @@
-package com.example.payment_qrcode.screen.splash
+package com.example.payment_qrcode.ui.screen.splash
 
+import android.os.Handler
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.payment_qrcode.R
 import com.example.payment_qrcode.base.BaseFragment
 import com.example.payment_qrcode.databinding.FragmentSplashBinding
-import com.example.payment_qrcode.screen.main.MainFragment
-import com.example.payment_qrcode.screen.signin.LoginFragment
+import com.example.payment_qrcode.ui.screen.main.MainFragment
+import com.example.payment_qrcode.ui.screen.signin.LoginFragment
 import com.example.payment_qrcode.utils.replaceFragment
 
 class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
@@ -31,11 +32,13 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
     override fun observeField() {
         with(viewModel) {
             loginStatus.observe(viewLifecycleOwner, Observer { status ->
-                if (status) {
-                    gotoHome()
-                } else {
-                    gotoLogin()
-                }
+                Handler().postDelayed({
+                    if (status) {
+                        gotoHome()
+                    } else {
+                        gotoLogin()
+                    }
+                }, 2000)
             })
         }
     }
@@ -45,7 +48,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
             parentFragmentManager,
             LoginFragment.newInstance(),
             R.id.frame_main_activity,
-            LoginFragment::class.java.name
+            LoginFragment::class.java.name,
+            addToBackStack = false
         )
     }
 
@@ -54,7 +58,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
             parentFragmentManager,
             MainFragment.newInstance(),
             R.id.frame_main_activity,
-            MainFragment::class.java.name
+            MainFragment::class.java.name,
+            addToBackStack = false
         )
     }
 }

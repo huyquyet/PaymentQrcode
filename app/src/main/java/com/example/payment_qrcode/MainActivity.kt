@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.payment_qrcode.screen.splash.SplashFragment
+import com.example.payment_qrcode.ui.screen.splash.SplashFragment
 import com.example.payment_qrcode.utils.ThresholdClickTime
 import javax.inject.Inject
 
@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private fun addFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction().apply {
             add(R.id.frame_main_activity, fragment, tag)
-            addToBackStack(tag)
         }.commit()
     }
 }

@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.payment_qrcode.ShareViewModel
 import com.example.payment_qrcode.base.ViewModelProviderFactory
 import com.example.payment_qrcode.di.annotation.ViewModelKey
-import com.example.payment_qrcode.screen.main.MainViewModel
-import com.example.payment_qrcode.screen.signin.LoginViewModel
-import com.example.payment_qrcode.screen.splash.SplashViewModel
-import com.example.payment_qrcode.screen.wallet.WalletViewModel
+import com.example.payment_qrcode.ui.screen.main.MainViewModel
+import com.example.payment_qrcode.ui.screen.signin.LoginViewModel
+import com.example.payment_qrcode.ui.screen.signup.SignUpViewModel
+import com.example.payment_qrcode.ui.screen.splash.SplashViewModel
+import com.example.payment_qrcode.ui.screen.wallet.WalletViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -44,4 +45,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SignUpViewModel::class)
+    abstract fun bindSignUpViewModel(signUpViewModel: SignUpViewModel): ViewModel
 }
