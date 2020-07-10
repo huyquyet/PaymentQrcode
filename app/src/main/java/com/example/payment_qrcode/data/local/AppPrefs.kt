@@ -1,9 +1,22 @@
 package com.example.payment_qrcode.data.local
 
+import com.example.payment_qrcode.data.model.Balance
 import com.example.payment_qrcode.data.model.User
+import com.example.payment_qrcode.utils.GsonUtils
+import com.example.payment_qrcode.utils.formatPrice
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
 
 class AppPrefs @Inject constructor(private val sharedPrefsApi: SharedPrefsApi) : PrefHelper {
+    override fun clearSharedPrefs() {
+        sharedPrefsApi.clear()
+    }
+
+    override fun removeUserInfo() {
+        sharedPrefsApi.remove(SharePrefsKey.USER_INFO)
+    }
+
     /**
      * Save status when user first open app
      */
@@ -30,64 +43,37 @@ class AppPrefs @Inject constructor(private val sharedPrefsApi: SharedPrefsApi) :
     /**
      * Get List user register in Local
      */
-    override fun getListUserRegister(): MutableList<User>? =
-        sharedPrefsApi.getObject<MutableList<User>>(SharePrefsKey.USER_INFO_LIST)
-
-    /**
-     * Save User in Local
-     * @return true if save success, false if User is exists in Local
-     */
-    override fun saveUserRegister(user: User): Boolean {
-        val userList = getListUserRegister()
-        return userList?.let { users ->
-            var userExists = false
-
-            /* Check user has been exists in list */
-            for (u in users) {
-                if (u.id == user.id) {
-                    userExists = true
-                    break
-                }
-            }
-
-            /* user not yet in list, save user in list */
-            if (!userExists) {
-                userList.add(user)
-                sharedPrefsApi.setObject(SharePrefsKey.USER_INFO_LIST, userList)
-            }
-            !userExists
-        } ?: ArrayList<User>().let { list ->
-            list.add(user)
-            sharedPrefsApi.setObject(SharePrefsKey.USER_INFO_LIST, list)
-            true
-        }
-    }
-
-    /**
-     * Check User in Local
-     * @return true if user exists
-     */
-    override fun checkUserRegister(user: User): Boolean {
-        val userList = getListUserRegister()
-        return userList?.let { users ->
-            /* Check user has been exists in list */
-            for (u in users) {
-                if (u.id == user.id) {
-                    return true
-                }
-            }
-            return false
-        } ?: false
+    override fun getListUserRegister(): MutableList<User>? {
+        val data = sharedPrefsApi.get(SharePrefsKey.USER_INFO_LIST, "")
+        val type = object : TypeToken<MutableList<User>>() {}.type
+        return GsonUtils.getInstance().fromJson<MutableList<User>>(data, type)
     }
 
     /**
      * Save the user information is currently logged in
      */
-    override fun saveUserInfo(user: User) = sharedPrefsApi.setObject(SharePrefsKey.USER_INFO, user)
+    override fun saveUserInfo(user: User) =
+        sharedPrefsApi.setObject<User>(SharePrefsKey.USER_INFO, user)
 
     /**
      * Get the user information is currently logged in
      */
     override fun getUserInfo(): User? = sharedPrefsApi.getObject<User>(SharePrefsKey.USER_INFO)
+
+    /**
+     * Get List balance of list User register
+     */
+    override fun getListBalances(): MutableList<Balance>? {
+        val data = sharedPrefsApi.get(SharePrefsKey.BALANCE_LIST, "")
+        val type = object : TypeToken<MutableList<Balance>>() {}.type
+        return GsonUtils.getInstance().fromJson<MutableList<Balance>>(data, type)
+    }
+
+    /**
+     * Set List balance of list User register
+     */
+    override fun setListBalances(balances: MutableList<Balance>) {
+        sharedPrefsApi.setObject(SharePrefsKey.BALANCE_LIST, balances)
+    }
 
 }

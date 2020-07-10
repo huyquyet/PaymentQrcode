@@ -1,5 +1,6 @@
 package com.example.payment_qrcode.data.repository
 
+import com.example.payment_qrcode.data.model.Balance
 import com.example.payment_qrcode.data.model.User
 
 interface UserRepository : Repository {
@@ -36,7 +37,13 @@ interface UserRepository : Repository {
      * Check User in Local
      * @return true if user exists
      */
-    fun checkUserRegister(user: User): Boolean
+    fun checkUserRegister(email: String?, password : String?): Boolean
+
+    /**
+     * Get User in Local
+     * @return user if user exists
+     */
+    fun getUserLogin(email: String?, password : String?): User?
 
     /**
      * Save the user information is currently logged in
@@ -47,5 +54,20 @@ interface UserRepository : Repository {
      * Get the user information is currently logged in
      */
     fun getUserInfo(): User?
+
+    /**
+     * Remove data UserInfo
+     */
+    fun removeUserInfo()
+
+    /**
+     * Get List balance of list User register
+     */
+    fun getListBalances() : MutableList<Balance>?
+
+    /**
+     * Set List balance of list User register
+     */
+    fun setListBalances(balances : MutableList<Balance>)
 
 }

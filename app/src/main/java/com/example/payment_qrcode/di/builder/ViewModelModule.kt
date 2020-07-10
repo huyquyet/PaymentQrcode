@@ -6,6 +6,9 @@ import com.example.payment_qrcode.ShareViewModel
 import com.example.payment_qrcode.base.ViewModelProviderFactory
 import com.example.payment_qrcode.di.annotation.ViewModelKey
 import com.example.payment_qrcode.ui.screen.main.MainViewModel
+import com.example.payment_qrcode.ui.screen.payment.PaymentViewModel
+import com.example.payment_qrcode.ui.screen.profile.ProfileViewModel
+import com.example.payment_qrcode.ui.screen.scan.ScanViewModel
 import com.example.payment_qrcode.ui.screen.signin.LoginViewModel
 import com.example.payment_qrcode.ui.screen.signup.SignUpViewModel
 import com.example.payment_qrcode.ui.screen.splash.SplashViewModel
@@ -50,4 +53,19 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SignUpViewModel::class)
     abstract fun bindSignUpViewModel(signUpViewModel: SignUpViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ScanViewModel::class)
+    abstract fun bindScanViewModel(scanViewModel: ScanViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    abstract fun bindProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PaymentViewModel::class)
+    abstract fun bindPaymentViewModel(paymentViewModel: PaymentViewModel): ViewModel
 }

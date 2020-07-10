@@ -4,9 +4,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.payment_qrcode.R
 import com.example.payment_qrcode.base.BaseFragment
+import com.example.payment_qrcode.data.model.User
 import com.example.payment_qrcode.databinding.FragmentLoginBinding
+import com.example.payment_qrcode.ui.screen.main.MainFragment
 import com.example.payment_qrcode.ui.screen.signup.SignUpFragment
 import com.example.payment_qrcode.utils.replaceFragment
+import com.example.payment_qrcode.utils.showToast
+
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
@@ -28,12 +32,54 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
      */
     override fun observeField() {
         with(viewModel) {
-            signUpStatus.observe(viewLifecycleOwner, Observer { status ->
+            switchSignUpStatus.observe(viewLifecycleOwner, Observer { status ->
                 if (status) {
                     gotoSignUp()
                 }
             })
+
+            loginStatus.observe(viewLifecycleOwner, Observer { user ->
+                user?.let {
+                    if (it.email.isNullOrEmpty()) {
+                        loginFail()
+                    } else {
+                        loginSuccess(user)
+                    }
+                } ?: run {
+                    loginFail()
+                }
+            })
+
+            loginTouchId.observe(viewLifecycleOwner, Observer { status ->
+                if (status) {
+                    loginViaTouchId()
+                }
+            })
         }
+    }
+
+    private fun loginFail() {
+        viewDataBinding.txtLoginError.text = getString(R.string.fragment_login_email_or_pass_wrong)
+    }
+
+    private fun loginSuccess(user: User) {
+        shareViewModel.setUserInfo(user)
+        gotoMain()
+    }
+
+    private fun loginViaTouchId() {
+        showToast(R.string.fragment_login_via_touch_id)
+    }
+
+    private fun gotoMain() {
+        replaceFragment(
+            parentFragmentManager,
+            MainFragment.newInstance(),
+            R.id.frame_main_activity,
+            MainFragment::class.java.name,
+            addToBackStack = false,
+            isTransaction = true
+        )
     }
 
     private fun gotoSignUp() {
@@ -41,7 +87,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             parentFragmentManager,
             SignUpFragment.newInstance(),
             R.id.frame_main_activity,
-            LoginFragment::class.java.name
+            LoginFragment::class.java.name,
+            addToBackStack = false,
+            isTransaction = true
         )
     }
 

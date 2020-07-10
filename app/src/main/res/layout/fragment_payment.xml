@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.payment_qrcode.ui.screen.payment.PaymentViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_back"
+                clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingEnd="@dimen/dp_16"
+                android:src="@drawable/icon_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Payment"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            loadImage="@{viewModel.lvdImageSupplier }"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_16" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/background_bottom_white"
+            android:paddingTop="@dimen/dp_16">
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:text="@{ viewModel.lvdName }"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="@{ viewModel.lvdNameSupplier }"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_title" />
+
+            <View
+                android:id="@+id/decorator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_14"
+                android:background="@color/gray_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_name" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_14"
+                android:text="Total amount:"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/decorator" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_total_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ viewModel.lvdTotal }"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_total" />
+
+            <ImageView
+                android:id="@+id/item_wallet_img_more"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_18"
+                android:src="@drawable/ic_more"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_payment_total_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_payment_total_value" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="Subtotal:"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_total_value" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_subtotal_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ viewModel.lvdSubTotal }"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_subtotal" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="FEE:"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_subtotal_value" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:id="@+id/txt_payment_fee_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ viewModel.lvdFee }"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_payment_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_fee" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_14"
+                android:background="@drawable/background_white_border"
+                android:padding="@dimen/dp_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payment_fee_value">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="247dp" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomTextView
+                    android:id="@+id/txt_payment_default_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Default payment method"
+                    android:textSize="@dimen/sp_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomTextView
+                    android:id="@+id/txt_payment_default_payment_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:text="@{ viewModel.lvdPaymentMethod }"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/guide_line"
+                    app:layout_constraintStart_toStartOf="@+id/txt_payment_default_payment"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_payment_default_payment" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomTextView
+                    android:id="@+id/txt_payment_available_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Available balance"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_payment_default_payment" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomTextView
+                    android:id="@+id/txt_payment_available_balance_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{ viewModel.lvdPaymentAvailable }"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_payment_default_payment_value" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomTextView
+                    android:id="@+id/txt_payment_change_available_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="Change"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_payment_available_balance_value" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.example.payment_qrcode.ui.widgets.CustomButton
+                android:id="@+id/btn_pay"
+                clickSafe="@{(v) -> viewModel.onClick(v)}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_32"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_32"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10"
+                android:background="@drawable/background_button_yellows"
+                android:ellipsize="end"
+                android:enabled="@{ viewModel.lvdEnableButton }"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{ viewModel.lvdButton }"
+                android:textAllCaps="false"
+                android:textColor="@color/color_text_sign_up"
+                android:textSize="@dimen/sp_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_balance" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

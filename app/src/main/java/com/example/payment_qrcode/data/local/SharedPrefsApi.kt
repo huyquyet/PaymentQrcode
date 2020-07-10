@@ -2,8 +2,11 @@ package com.example.payment_qrcode.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.payment_qrcode.data.model.User
 import com.example.payment_qrcode.utils.GsonUtils
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.util.ArrayList
 import javax.inject.Inject
 
 class SharedPrefsApi @Inject constructor(context: Context) {
@@ -47,6 +50,15 @@ class SharedPrefsApi @Inject constructor(context: Context) {
             null
         } else {
             GsonUtils.stringToObject(data, T::class.java)
+        }
+    }
+
+    inline fun <reified T> getListObject(key: String): MutableList<T>? = run {
+        val data = get(key, "")
+        return if (data.isEmpty()) {
+            null
+        } else {
+            GsonUtils.toListObject(data)
         }
     }
 }

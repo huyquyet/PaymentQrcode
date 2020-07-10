@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Payment Qrcode</string>
+
+    <string name="title_tab_bar_wallet">Wallet</string>
+    <string name="title_tab_bar_scan">Scan</string>
+    <string name="title_tab_bar_profile">Profile</string>
     <string name="fragment_login_sign_in">Sign In</string>
     <string name="fragment_login_user_your">Use your</string>
     <string name="fragment_login_account">account</string>
@@ -8,4 +12,39 @@
     <string name="fragment_login_i_forgot_password">I forgot password</string>
     <string name="fragment_login_login">Log in</string>
     <string name="fragment_login_sign_up">Sign up</string>
+    <string name="fragment_login_email_or_pass_wrong">Email or password wrong!</string>
+    <string name="fragment_login_via_touch_id">Login via touch ID</string>
+    <string name="fragment_sing_up_create_personal_account">Create a Personal Account</string>
+    <string name="fragment_sing_up_to_use">to use</string>
+    <string name="fragment_sing_up_email">Email</string>
+    <string name="fragment_sing_up_create_password">Create Password</string>
+    <string name="fragment_sing_up_legal_first_name">Legal First Name</string>
+    <string name="fragment_sing_up_legal_last_name">Legal Last Name</string>
+    <string name="fragment_sing_up_password_must_be_at_least">Password must be at least 8 characters.\nMust include: (1 uppercase, 1 digit, 1 lowercase)</string>
+    <string name="fragment_sing_up_pls_check_email_password">SignUp fail, pls check email or password</string>
+    <string name="fragment_wallet_available_balance">AVAILABLE BALANCE</string>
+    <string name="fragment_wallet_currency">$</string>
+    <string name="fragment_wallet_top_up">Top up</string>
+    <string name="fragment_wallet_vault">Vault</string>
+    <string name="fragment_payment_transaction_fail">Transaction Fail!</string>
+    <string name="fragment_profile_notification">Notifications</string>
+    <string name="fragment_profile_personal_information">Personal Information</string>
+    <string name="fragment_profile_security_settings">Security Settings</string>
+    <string name="fragment_profile_help_support">Help - Support</string>
+    <string name="fragment_profile_terms_of_use">Terms of Use</string>
+    <string name="fragment_profile_log_out">Log out</string>
+
+    <string-array name="name_vault">
+        <item>Warcraft game</item>
+        <item>Brush plugin</item>
+        <item>100 Diamonds</item>
+        <item>Compass PRO</item>
+    </string-array>
+
+    <string-array name="description_vault">
+        <item>Paid to Steam</item>
+        <item>Refund from Google Play</item>
+        <item>Paid to CorelDraw</item>
+        <item>Paid to Duelyst</item>
+    </string-array>
 </resources>

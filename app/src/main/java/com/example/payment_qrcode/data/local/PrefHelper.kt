@@ -1,9 +1,11 @@
 package com.example.payment_qrcode.data.local
 
+import com.example.payment_qrcode.data.model.Balance
 import com.example.payment_qrcode.data.model.User
 
 interface PrefHelper {
-
+    fun clearSharedPrefs()
+    fun removeUserInfo()
     /**
      * Save status when user first open app
      */
@@ -27,18 +29,6 @@ interface PrefHelper {
     fun getListUserRegister(): MutableList<User>?
 
     /**
-     * Save User in Local
-     * @return true if save success, false if User is exists in Local or save fail
-     */
-    fun saveUserRegister(user: User): Boolean
-
-    /**
-     * Check User in Local
-     * @return true if user exists
-     */
-    fun checkUserRegister(user: User): Boolean
-
-    /**
      * Save the user information is currently logged in
      */
     fun saveUserInfo(user: User)
@@ -47,5 +37,15 @@ interface PrefHelper {
      * Get the user information is currently logged in
      */
     fun getUserInfo(): User?
+
+    /**
+     * Get List balance of list User register
+     */
+    fun getListBalances() : MutableList<Balance>?
+
+    /**
+     * Set List balance of list User register
+     */
+    fun setListBalances(balances : MutableList<Balance>)
 
 }

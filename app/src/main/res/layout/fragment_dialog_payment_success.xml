@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.payment_qrcode.ui.screen.payment.DialogPaymentSuccess" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_dialog_transparent"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingEnd="@dimen/dp_16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_dialog_success_white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_30"
+                android:src="@drawable/icon_success" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_30"
+                android:gravity="center"
+                android:text="TRANSACTION SUCCESSFUL"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Transaction code: "
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{ viewModel.lvdTransactionCode }"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:gravity="center"
+                android:text="We are sending a copy of all important order information to your email address."
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@color/gray" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center"
+                android:text="OK"
+                clickSafe="@{ () -> viewModel.onClick() }"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/sp_18" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

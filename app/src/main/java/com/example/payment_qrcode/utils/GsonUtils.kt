@@ -1,9 +1,9 @@
 package com.example.payment_qrcode.utils
 
 import com.google.gson.*
+import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 import java.math.BigDecimal
-import java.util.*
 
 class GsonUtils {
     companion object {
@@ -34,12 +34,15 @@ class GsonUtils {
             return getInstance().fromJson(json, clazz)
         }
 
-        fun <T> toListObject(
-            json: String?,
-            clazz: Class<Array<T>?>?
-        ): List<T> {
-            val t = getInstance().fromJson(json, clazz)!!
-            return ArrayList(listOf(*t))
+        inline fun <reified T> toListObject(
+            json: String?
+        ): MutableList<T> {
+            val turnsType = object : TypeToken<MutableList<T>>() {}.type
+            return getInstance().fromJson(json, turnsType)
+        }
+
+        fun <T> getType() : Type {
+            return object : TypeToken<MutableList<T>>() {}.type
         }
     }
 

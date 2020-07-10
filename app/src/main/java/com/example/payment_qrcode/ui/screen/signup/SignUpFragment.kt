@@ -4,7 +4,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.payment_qrcode.R
 import com.example.payment_qrcode.base.BaseFragment
+import com.example.payment_qrcode.data.model.User
 import com.example.payment_qrcode.databinding.FragmentSignUpBinding
+import com.example.payment_qrcode.ui.screen.main.MainFragment
+import com.example.payment_qrcode.ui.screen.signin.LoginFragment
+import com.example.payment_qrcode.utils.replaceFragment
+import com.example.payment_qrcode.utils.showToast
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
 
@@ -19,6 +24,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
      * Call in [onViewCreated] when view has created
      */
     override fun initData() {
+        viewModel.setData()
     }
 
     /**
@@ -26,20 +32,45 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
      */
     override fun observeField() {
         with(viewModel) {
-            signUpStatus.observe(viewLifecycleOwner, Observer { status ->
-                gotoSignUp()
+            switchLoginStatus.observe(viewLifecycleOwner, Observer { status ->
+                if (status) {
+                    gotoLogin()
+                }
+            })
+
+            signUpStatus.observe(viewLifecycleOwner, Observer { user ->
+                user?.run {
+                    signSuccess(user)
+                } ?: signUpFail()
             })
         }
     }
 
-    private fun gotoSignUp() {
-//        replaceFragment(
-//            parentFragmentManager,
-//            SignUpFragment.newInstance(),
-//            R.id.frame_main_activity,
-//            SignUpFragment::class.java.name,
-//            addToBackStack = false
-//        )
+    private fun signUpFail() {
+        showToast(R.string.fragment_sing_up_pls_check_email_password)
+    }
+
+    private fun signSuccess(user: User) {
+        showToast("Sing up success. pls login!")
+        replaceFragment(
+            parentFragmentManager,
+            LoginFragment.newInstance(),
+            R.id.frame_main_activity,
+            LoginFragment::class.java.name,
+            addToBackStack = false,
+            isTransaction = true
+        )
+    }
+
+    private fun gotoLogin() {
+        replaceFragment(
+            parentFragmentManager,
+            LoginFragment.newInstance(),
+            R.id.frame_main_activity,
+            LoginFragment::class.java.name,
+            addToBackStack = false,
+            isTransaction = true
+        )
     }
 
 }

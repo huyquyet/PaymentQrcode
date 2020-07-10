@@ -11,143 +11,162 @@
             type="com.example.payment_qrcode.ui.screen.signup.SignUpViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
-        android:orientation="vertical">
+        android:background="@drawable/background">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/logo" />
-
-        <View
-            android:layout_width="90dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="#D8D8D8" />
-
-        <com.example.payment_qrcode.ui.widgets.CustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="@string/fragment_login_sign_in"
-            android:textColor="#D8D8D8"
-            android:textSize="30sp" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp">
-
-            <com.example.payment_qrcode.ui.widgets.CustomTextView
-                android:id="@+id/txt_use_your"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_login_user_your"
-                android:textColor="#D8D8D8"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dp_36"
+            android:paddingEnd="@dimen/dp_36">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/passport_logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_use_your" />
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_24"
+                android:src="@drawable/passport_logo" />
 
             <com.example.payment_qrcode.ui.widgets.CustomTextView
-                android:id="@+id/txt_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_login_account"
-                android:textColor="#D8D8D8"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/fragment_sing_up_create_personal_account"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/fragment_sing_up_to_use"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_14" />
 
-        <com.example.payment_qrcode.ui.widgets.CustomEditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/background_edit_text"
-            android:hint="@string/fragment_login_email"
-            android:paddingStart="16dp"
-            android:paddingEnd="10dp"
-            android:text="@{viewModel.lvdEmail }"
-            android:textColor="#D8D8D8"
-            android:textColorHint="#D8D8D8" />
+            <ImageView
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_4"
+                android:src="@drawable/logo" />
 
-        <com.example.payment_qrcode.ui.widgets.CustomEditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/background_edit_text"
-            android:drawableEnd="@drawable/touch_id"
-            android:hint="@string/fragment_login_password"
-            android:inputType="textPassword"
-            android:paddingStart="16dp"
-            android:paddingEnd="10dp"
-            android:text="@{viewModel.lvdPassword }"
-            android:textColor="#D8D8D8"
-            android:textColorHint="#D8D8D8" />
+            <com.example.payment_qrcode.ui.widgets.CustomEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@drawable/background_edit_text"
+                android:hint="@string/fragment_sing_up_email"
+                android:paddingStart="@dimen/dp_14"
+                android:paddingEnd="@dimen/dp_10"
+                android:text="@={viewModel.lvdEmail }"
+                android:textColor="@color/white"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/white_hint" />
 
-        <com.example.payment_qrcode.ui.widgets.CustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:text="@string/fragment_login_i_forgot_password"
-            android:textColor="#EFC74E"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.example.payment_qrcode.ui.widgets.CustomEditText
+                android:id="@+id/edit_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/background_edit_text"
+                android:hint="@string/fragment_sing_up_create_password"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingEnd="@dimen/sp_10"
+                android:text="@={viewModel.lvdPassword }"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white_hint" />
 
-<!--        <com.example.payment_qrcode.ui.widgets.CustomButton-->
-<!--            android:id="@+id/btn_login"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginStart="50dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginEnd="50dp"-->
-<!--            android:background="@drawable/background_button_yellow"-->
-<!--            android:onClick="@{(v) -> viewModel.onClick(v)}"-->
-<!--            android:text="@string/fragment_login_login"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="#000000"-->
-<!--            android:textSize="20sp" />-->
+            <com.example.payment_qrcode.ui.widgets.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/fragment_sing_up_password_must_be_at_least"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12" />
 
-<!--        <com.example.payment_qrcode.ui.widgets.CustomButton-->
-<!--            android:id="@+id/btn_sign_up"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginStart="50dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginEnd="50dp"-->
-<!--            android:background="@drawable/background_button_gray"-->
-<!--            android:onClick="@{(v) -> viewModel.onClick(v)}"-->
-<!--            android:text="@string/fragment_login_sign_up"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textColor="#ffffff"-->
-<!--            android:textSize="20sp" />-->
-    </LinearLayout>
+            <com.example.payment_qrcode.ui.widgets.CustomEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_14"
+                android:background="@drawable/background_edit_text"
+                android:hint="@string/fragment_sing_up_legal_first_name"
+                android:paddingStart="@dimen/dp_14"
+                android:paddingEnd="@dimen/dp_10"
+                android:text="@={viewModel.lvdFirstName }"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white_hint" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/background_edit_text"
+                android:hint="@string/fragment_sing_up_legal_last_name"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingEnd="@dimen/sp_10"
+                android:text="@={viewModel.lvdLastName }"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white_hint" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{ viewModel.lvdSwitchStatus }"
+                    clickSafe="@{(v) -> viewModel.onClick(v)}"/>
+
+                <com.example.payment_qrcode.ui.widgets.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="@string/fragment_sing_up_password_must_be_at_least"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+
+            <com.example.payment_qrcode.ui.widgets.CustomButton
+                android:id="@+id/btn_sign_up"
+                clickSafe="@{(v) -> viewModel.onClick(v)}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_4"
+                android:background="@drawable/background_button_yellows"
+                android:enabled="@{ viewModel.lvdEnabledBtnSignUp }"
+                android:text="@string/fragment_login_sign_up"
+                android:textAllCaps="false"
+                android:textColor="@color/color_text_sign_up"
+                android:textSize="@dimen/sp_20" />
+
+            <com.example.payment_qrcode.ui.widgets.CustomButton
+                android:id="@+id/btn_switch_login"
+                clickSafe="@{(v) -> viewModel.onClick(v)}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:background="@drawable/background_button_gray"
+                android:text="@string/fragment_login_login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20" />
+        </LinearLayout>
+    </ScrollView>
 
 </layout>

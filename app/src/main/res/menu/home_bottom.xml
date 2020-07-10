@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigationWallet"
+        android:icon="@drawable/wallet_activated"
+        android:title="@string/title_tab_bar_wallet"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navigationScan"
+        android:icon="@drawable/scan_activated"
+        android:title="@string/title_tab_bar_scan"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navigationProfile"
+        android:icon="@drawable/profile_activated"
+        android:title="@string/title_tab_bar_profile"
+        app:showAsAction="ifRoom" />
+</menu>

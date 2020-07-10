@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.payment_qrcode.ui.screen.profile.ProfileViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_30"
+            android:src="@drawable/logo" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_20"
+            android:src="@drawable/image_2" />
+
+        <com.example.payment_qrcode.ui.widgets.CustomTextView
+            android:id="@+id/txt_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@{viewModel.lvdName}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold" />
+
+        <com.example.payment_qrcode.ui.widgets.CustomTextView
+            android:id="@+id/txt_profile_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:text="+43 123 456 789"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_bottom_white"
+            android:paddingTop="@dimen/dp_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.example.payment_qrcode.ui.widgets.CustomItemProfile
+                    android:id="@+id/profile_notification"
+                    clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_profile_icon="@{ viewModel.lvsIconNotification }"
+                    app:item_profile_name="@{ @string/fragment_profile_notification}" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomItemProfile
+                    android:id="@+id/profile_information"
+                    clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_profile_icon="@{ viewModel.lvsIconInformation }"
+                    app:item_profile_name="@{ @string/fragment_profile_personal_information}" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomItemProfile
+                    android:id="@+id/profile_security_settings"
+                    clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_profile_icon="@{ viewModel.lvsIconSecurity }"
+                    app:item_profile_name="@{ @string/fragment_profile_security_settings}" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomItemProfile
+                    android:id="@+id/profile_help_support"
+                    clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_profile_icon="@{ viewModel.lvsIconHelp }"
+                    app:item_profile_name="@{ @string/fragment_profile_help_support}" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomItemProfile
+                    android:id="@+id/profile_terms_of_use"
+                    clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_profile_icon="@{ viewModel.lvsIconTerms }"
+                    app:item_profile_name="@{ @string/fragment_profile_terms_of_use}" />
+
+                <com.example.payment_qrcode.ui.widgets.CustomItemProfile
+                    android:id="@+id/profile_log_out"
+                    clickSafe="@{ (v) -> viewModel.onClick(v) }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    app:item_profile_icon="@{ viewModel.lvsIconTerms }"
+                    app:item_profile_name="@{ @string/fragment_profile_log_out}" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

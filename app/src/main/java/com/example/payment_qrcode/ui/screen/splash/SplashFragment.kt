@@ -19,6 +19,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>() {
     override val viewModel: SplashViewModel by viewModels { viewModelFactory }
     override val layoutId: Int = R.layout.fragment_splash
 
+    override fun beforeAddContent() {
+        super.beforeAddContent()
+        viewModel.initData()
+    }
     /**
      * Call in [onViewCreated]
      */

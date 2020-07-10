@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
 import com.example.payment_qrcode.BR
@@ -29,6 +30,11 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
     val shareViewModel by viewModels<ShareViewModel>({ activity as MainActivity }) { viewModelFactory }
 
     /**
+     * call when receiver
+     */
+    open fun beforeAddContent() {}
+
+    /**
      * Call in [onViewCreated] when view has created
      */
     abstract fun initData()
@@ -37,6 +43,11 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
      * Call in [onViewCreated] after [initData]
      */
     abstract fun observeField()
+
+    final override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        beforeAddContent()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +67,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
         }
 
         initData()
+
+        viewModel.onLoading.observe(viewLifecycleOwner, Observer { status ->
+            status?.also {
+                if (it) showLoading() else hideLoading()
+            }
+        })
+
         observeField()
     }
 
@@ -72,5 +90,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
                 false
             }
         }
+    }
+
+    fun showLoading() {
+        (activity as MainActivity).showLoading()
+    }
+
+    fun hideLoading() {
+        (activity as MainActivity).hideLoading()
     }
 }
